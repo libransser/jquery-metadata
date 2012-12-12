@@ -1,7 +1,7 @@
 /*
  * Metadata - jQuery plugin for parsing metadata from elements
  *
- * Copyright (c) 2006 John Resig, Yehuda Katz, J�örn Zaefferer, Paul McLanahan
+ * Copyright (c) 2006 John Resig, Yehuda Katz, Jörn Zaefferer, Paul McLanahan
  *
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php
@@ -9,6 +9,9 @@
  *
  * Version: 2.1 
  *
+ * Changes from version 2.0:
+ * 		- Added the support for HTML5 data-* attributes made by Craga89 on https://github.com/jquery/jquery-metadata/pull/3
+ * 		- Default type changed to 'html5'
  */
 
 /**
@@ -66,7 +69,7 @@
 	$.extend({
 		metadata : {
 			defaults : {
-				type: 'class',
+				type: 'html5',
 				name: 'metadata',
 				cre: /({.*})/,
 				single: 'metadata'
