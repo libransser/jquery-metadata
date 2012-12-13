@@ -114,8 +114,7 @@
 					$( elem.attributes ).each(function() {
 						var name = this.nodeName;
 						
-						// TODO: change made here, avoiding data-original-title attribute
-						if(name.match(/^data-/) && !name.match(/^data-original-title/)) {
+						if(name.match(/^data-/)) {
 							name = name.replace(/^data-/, '');
 							object[name] = getObject( this.nodeValue );
 						}
