@@ -105,7 +105,7 @@
 								data = eval( '("' + data + '")' );
 							}
 						}
-					}						
+					}
 					
 					return data;
 				}
@@ -119,7 +119,7 @@
 							object[name] = getObject( this.nodeValue );
 						}
 					});
-				} 
+				}
 				else {
 					if(settings.type == 'class') {
 						match = settings.cre.exec( elem.className );
