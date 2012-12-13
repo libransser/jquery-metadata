@@ -11,7 +11,7 @@
  *
  * Changes from version 2.0:
  * 		- Added the support for HTML5 data-* attributes made by Craga89 on https://github.com/Craga89/jquery-metadata
- * 		- Corrected behaviour when using HTML5 data-* attributes, as trying to use the values stored in data-* as plain strings wasn't straight-forward.
+ * 		- Corrected behaviour when using HTML5 data-* attributes for the jQuery.Validation plugin, as trying to use the values stored in data-* as plain strings wasn't straight-forward.
  * 		    The values first get evaluated as usual (working for booleans, hashes, arrays, etc.), if that fails it is evaluated as plain string.
  * 		- Default type changed to 'html5'
  */
