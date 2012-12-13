@@ -7,10 +7,12 @@
  *   http://www.opensource.org/licenses/mit-license.php
  *   http://www.gnu.org/licenses/gpl.html
  *
- * Version: 2.1 
+ * Version: 2.1
  *
  * Changes from version 2.0:
- * 		- Added the support for HTML5 data-* attributes made by Craga89 on https://github.com/jquery/jquery-metadata/pull/3
+ * 		- Added the support for HTML5 data-* attributes made by Craga89 on https://github.com/Craga89/jquery-metadata
+ * 		- Corrected behaviour when using HTML5 data-* attributes, as trying to use the values stored in data-* as plain strings wasn't straight-forward.
+ * 		    The values first get evaluated as usual (working for booleans, hashes, arrays, etc.), if that fails it is evaluated as plain string.
  * 		- Default type changed to 'html5'
  */
 
@@ -93,21 +95,18 @@
 
 				data = '{}';
 
-				function getData(data) {
-					if('string' !== typeof data) {
-						return data;
-					}
-
-					if(data.indexOf('{') < 0) {
-						data = eval('(' + data + ')');
-					}
-				}
-				
 				function getObject(data) {
 					if('string' === typeof data) {
-						data = eval('(' + data + ')');
-					}
-
+						try {
+							data = eval('(' + data + ')');
+						}
+						catch( e ) {
+							if( 'html5' == settings.type ) {
+								data = eval( '("' + data + '")' );
+							}
+						}
+					}						
+					
 					return data;
 				}
 				
@@ -115,7 +114,8 @@
 					$( elem.attributes ).each(function() {
 						var name = this.nodeName;
 						
-						if(name.match(/^data-/)) {
+						// TODO: change made here, avoiding data-original-title attribute
+						if(name.match(/^data-/) && !name.match(/^data-original-title/)) {
 							name = name.replace(/^data-/, '');
 							object[name] = getObject( this.nodeValue );
 						}
